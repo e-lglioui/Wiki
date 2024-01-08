@@ -3,7 +3,7 @@
 Le Gestionnaire de Contenu Wiki est une plateforme interactive permettant la création, la gestion et la découverte de wikis. Cet outil vise à simplifier le partage et la recherche de connaissances au sein d'une communauté. 
 
 ------------#######################----------------
-
+ 
 ## Fonctionnalités
 
 - **Gestion des Catégories et des Tags** : Les administrateurs peuvent organiser les wikis en créant, modifiant et supprimant des catégories et des tags pour faciliter la recherche et la navigation.
