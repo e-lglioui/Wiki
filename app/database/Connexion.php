@@ -1,15 +1,24 @@
 <?php
+namespace App\database;
+use PDO;
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../'); // Adjust the path as needed
+$dotenv->load();
+
 class Connexion{
-private $host="localhost";
-private $dbname="wiki";
-private $username="root";
-private $mot_pass="";
+
 private $pdo;
+
 
 public function __construct()
     {
+         $host = $_ENV['DB_HOST'];
+         $dbname = $_ENV['DB_NAME'];
+         $username = $_ENV['DB_USER'];
+         $mot_pass = $_ENV['DB_PASSWORD'];
+    
         try {
-            $this->pdo = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->mot_pass);
+            $this->pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $mot_pass);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo"connected";
         } catch (PDOException $e) {

@@ -1,8 +1,12 @@
 <?php
 namespace App\Controllers;
 
-class UserController{
-public static function test(){
-    echo"working";
-}
+use App\database\Connexion;
+
+class UserController {
+    public static function test() {
+        echo "working";
+        $conn = new Connexion();
+        $pdo = $conn->getConnection();
+    }
 }
