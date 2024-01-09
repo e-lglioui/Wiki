@@ -1,3 +1,8 @@
 <?php 
+require_once '../config/app.php';
 require_once '../vendor/autoload.php';
-echo App\Controllers\UserController::test();
+require_once '../routes/web.php';
+
+use App\Controllers\UserController ;
+$a=new UserController();
+echo $a->test();
