@@ -1,0 +1,25 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'DM Sans', sans-serif;
+}
+* , *::after, *::after{
+    box-sizing: border-box;
+}
+img,svg,video{
+    display:block;
+    max-width: 100%;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+body{
+    height: 100vh;
+    margin: 0px ;
+}
+.navbar-nav {
+    width: 50%;
+}
