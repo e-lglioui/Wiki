@@ -1,5 +1,8 @@
 <?php
 namespace App\Models;
+use App\database\Connexion;
+use PDO;
+use PDOException;
 
 class CategorieModel{
 private $nom;
@@ -27,23 +30,33 @@ try {
  /*select categorie*/
 public function selectCategorie(){
     $sql="SELECT * FROM `categorie`";
-    $conn = $this->connect->getConnection();  
+    $conn = $this->connect->getConnection(); 
+    $stmt=$conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);  
     }
 /*select categorie by id */
 public function idCategorie(){
     $sql="SELECT * FROM `categorie` where `id`='?'";
-    $conn = $this->connect->getConnection();  
+    $conn = $this->connect->getConnection(); 
+    $stmt=$conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     }
-/*select categorie by date de creation recente*/
-public function dateCategorie(){
-    $sql="SELECT * FROM `categorie` ";
-    $conn = $this->connect->getConnection();  
+    /*select categorie by date de creation recente*/
+    public function dateCategorie()
+    {
+        $sql = "SELECT * FROM `categorie` ORDER BY `dat` DESC"; // Added ORDER BY for recent dates
+        $conn = $this->connect->getConnection();
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 /*apdate categorie*/
-public function updCategorie(){
+   public function updCategorie(){
     $sql= "UPDATE `categorie` SET `nom`='?',`discription`='?',`dat`='?'";
     $conn = $this->connect->getConnection();
-    
+   
     try {
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(1, $this->nom, PDO::PARAM_STR);
