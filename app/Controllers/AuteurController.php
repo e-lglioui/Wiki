@@ -16,7 +16,7 @@ class AuteurController
 
     public function auteur()
     {
-        session_start(); // Start the session
+        session_start(); 
 
         $categorieModel = new CategorieModel();
         $categories = $categorieModel->selectCategorie();
@@ -53,7 +53,7 @@ class AuteurController
             $id_user = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
             $tagIds = isset($_POST['tags']) ? $_POST['tags'] : [];
     
-            // Check if the file was uploaded successfully
+            
             if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
                 $imgData = file_get_contents($_FILES['image']['tmp_name']);
     
@@ -61,7 +61,7 @@ class AuteurController
                 $Wiki = new Wiki($titre, $contenu, $dat, $id_categorie, $id_user, $imgData);
                 $WikiModel->addWiki($Wiki, $tagIds);
             } else {
-                // Handle the file upload error
+                
                 echo "Error uploading file: " . $_FILES['image']['error'];
             }
         }

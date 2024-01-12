@@ -84,9 +84,12 @@
 
             
             <!-- Section for displaying wikis -->
+
 <section class="container">
     <div class="row">
+  
         <?php foreach ($wikis as $wiki) : ?>
+            
             <div class="col-md-4">
                 <div class="card wiki-card">
                     <img src="data:image/jpeg;base64,<?= base64_encode($wiki['img_data']) ?>" class="card-img-top" alt="<?= $wiki['titre'] ?>">
@@ -129,7 +132,8 @@
 
             <!-- Disarchiver Modal -->
             <div class="modal fade" id="unarchiveModal<?= $wiki['id_wiki'] ?>" tabindex="-1" role="dialog" aria-labelledby="unarchiveModalLabel<?= $wiki['id_wiki'] ?>" aria-hidden="true">
-                <div class="modal-dialog">
+            <?=$_SESSION['wiki_id'] =$wiki['id_wiki'] ?>
+                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="unarchiveModalLabel<?= $wiki['id_wiki'] ?>">Unarchive Wiki</h5>

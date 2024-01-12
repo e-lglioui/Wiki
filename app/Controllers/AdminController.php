@@ -9,9 +9,10 @@ use  App\Models\WikiModel;
 use  App\entities\Categorie;
 use  App\entities\Tag;
 use  App\entities\Wiki;
+
 class AdminController
 {
-
+  
     use View; 
     private TagModel $Tag;
     private CategorieModel $Categorie;
@@ -77,7 +78,7 @@ class AdminController
     public function disarchiverWiki()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Disarchiver'])) {
-           $wikiId = $_POST['Disarchiver'];
+           $wikiId = $_SESSION['wiki_id'];
     
             try {
                 $wikiModel = new WikiModel();
