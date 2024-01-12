@@ -1,0 +1,16 @@
+
+.bb {
+    height: 100%;
+    display: flex;
+}
+
+.sidebar {
+    background-color: #343a40; /* Dark background color */
+    color: white;
+    padding: 15px;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 15px;
+}

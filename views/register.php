@@ -10,10 +10,10 @@
                 <div class="card bg-dark">
                     <div class="card-body">
                         <h2 class="text-center text-white">Inscription</h2>
-                        <form id="signupForm">
+                        <form id="signupForm" method="post">
                             <div class="form-group">
                                 <label for="name">Nom:</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <input type="text" class="form-control" id="name" name="nom" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
@@ -27,10 +27,10 @@
                                 <label for="confirmPassword">Confirmer le mot de passe:</label>
                                 <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
                             </div>
-                            <button type="submit" class="btn btn-secondary btn-block">S'inscrire</button>
+                            <button type="submit" class="btn btn-secondary btn-block" nom="submit">S'inscrire</button>
                         </form>
                         <div class="mt-3 text-center">
-                            <p class="text-muted">Déjà un compte ? <a href="login.html">Connectez-vous ici</a></p>
+                            <p class="text-muted">Déjà un compte ? <a href="">Connectez-vous ici</a></p>
                         </div>
                     </div>
                 </div>

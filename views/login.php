@@ -8,7 +8,7 @@
                 <div class="card bg-dark">
                     <div class="card-body">
                         <h2 class="text-center text-white">Login</h2>
-                        <form id="loginForm">
+                        <form id="loginForm" method="post">
                             <div class="form-group">
                                 <label for="email">Email:</label>
                                 <input type="email" class="form-control" id="email" name="email" required>

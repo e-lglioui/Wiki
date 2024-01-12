@@ -12,7 +12,8 @@ class Application
     {
         //run the match function to get the class and method
         $callable = $this->match($this->method(), $this->path());
-
+        // var_dump($callable);
+        // die();
         if (!$callable){
             throw new \Exception('Oops! you are lost', 404);
         }

@@ -24,6 +24,8 @@ CREATE TABLE wiki(
     datecreation date,
     id_categorie INT,
     id_users INT,
+    statue boolean,
+    img_data MEDIUMBLOB,
     FOREIGN KEY (id_categorie) REFERENCES categorie (id),
     FOREIGN KEY (id_users) REFERENCES users (id_user)
 )ENGINE=InnoDB;

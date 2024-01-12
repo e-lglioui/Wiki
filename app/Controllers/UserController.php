@@ -1,33 +1,98 @@
 <?php
+
 namespace App\Controllers;
 
-use App\database\Connexion;
+use App\Models\UserModel;
+use App\entities\User;
+use App\Database\Connexion;
+use App\Controllers\AdminController;
+use App\Controllers\AuteurController;
+use Core\View;
+use Exception;
+session_start();
+class UserController
+{
+    use View;
 
-class UserController {
-    public function regester(){
-        $nom=$this->validation($nom);
-        $prenom=$this->validation($prenom);
-        $email=$this->validation($email);
+    private $connexion;
+    private $userModel;
+
+    public function __construct()
+    {
+        $this->connexion = new Connexion();
+        $this->userModel = new UserModel($this->connexion);
+    }
+
+    public function register()
+    {
+        try {
+            $view = 'register';
+            $params = [
+                // add any necessary parameters
+            ];
+            $this->render($view, $params);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function login()
+    {
+        try {
+            $view = 'login';
+            $params = [
+                // add any necessary parameters
+            ];
+            $this->render($view, $params);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function registerUser()
+    {  
+        
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $nom = $this->validation($_POST['nom']);
+        $email = $this->validation($_POST['email']);
+        $mot_pass = $this->validation($_POST['password']); 
         $mot_pass = password_hash($mot_pass, PASSWORD_DEFAULT);
-        $connexion = new Connexion();
-        $user = new User($nom,$prenom,$email,$mot_pass);
-        $user->creatAcount();
+        $id_rol="1"; 
+        $user = new User($nom, $email, $mot_pass,$id_rol);
+        $this->userModel->createAccount($user);
+        }
     }
-    
-    public function login(){
-        $email=$this->validation($email);
-        $password=$this->validation($password);
-        $connexion = new Connexion();
-        $user = new UserModal;
-        $user->findAcount($email,$password);
-    
+
+    public function loginUser()
+    {
+        $email = $this->validation($_POST['email']);
+        $password = $this->validation($_POST['password']); 
+        $user = $this->userModel->findAccount($email, $password);
+
+        if ($user) {
+            $_SESSION['userId'] = $user['id_user'];
+            $_SESSION['loggedIn'] = true;
+            $_SESSION['role_id'] =$user['id_role'];
+            // var_dump($user['id_role']);
+            // die();
+            if($user['id_role']=== "1"){
+                $admin=new AdminController();
+                $admin->admin();
+            }else{
+                $auteur=new AuteurController();
+                $auteur->auteur(); 
+            } 
+            
+        } else {
+       $this->register();
+        }
     }
-    
-    public function validation($data)
+
+    private function validation($data)
     {
         $data = trim($data);
-        $data = htmlspecialchars($data); 
-        $data = addslashes($data); 
+        $data = htmlspecialchars($data);
+        $data = addslashes($data);
         return $data;
     }
 }

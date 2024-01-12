@@ -20,7 +20,6 @@ public function __construct()
         try {
             $this->pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $mot_pass);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo"connected";
         } catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }

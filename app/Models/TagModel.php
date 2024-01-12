@@ -3,21 +3,21 @@ namespace App\Models;
 use App\database\Connexion;
 use PDO;
 use PDOException;
-
+use  App\entities\Tag;
 class TagModel{
 private $titre;
 private Connexion $conn;
 public function __construct(){
-    $conn = new Connexion();
+    $this->conn = new Connexion();
 }
 /*ajouter Tag*/
-public function addTag(){
-$sql= "INSERT INTO `tag`(`titre`) VALUES ('?')";
-$conn = $this->connect->getConnection();
+public function addTag(Tag $Tag){
+$sql= "INSERT INTO `tag`(`titre`) VALUES (:titre)";
+$conn = $this->conn->getConnection();
 
 try {
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(1, $this->titre, PDO::PARAM_STR);
+    $stmt->bindValue(':titre',$Tag-> getTitre());
     $stmt->execute();
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
@@ -26,7 +26,7 @@ try {
  /*select Tag*/
 public function selectTag(){
     $sql="SELECT * FROM `tag`";
-    $conn = $this->connect->getConnection(); 
+    $conn = $this->conn->getConnection(); 
     $stmt=$conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);  
