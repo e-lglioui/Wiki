@@ -54,6 +54,8 @@
 
         <!-- Main Content -->
         <main class="col-md-9 content">
+            <!--searche-->
+            <div id="livesearch"></div>
             <!-- Section for displaying categories -->
             <div>
                 <h3>Categories</h3>

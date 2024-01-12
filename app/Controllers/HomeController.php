@@ -1,8 +1,13 @@
 <?php
 
 namespace App\Controllers;
-use App\entities\Wiki;
-use App\Models\WikiModel;
+use App\Models\CategorieModel;
+use  App\Models\TagModel;
+use  App\Models\WikiModel;
+use  App\entities\Categorie;
+use  App\entities\Tag;
+use  App\entities\Wiki;
+
 use Core\View; 
 
 class HomeController
@@ -11,13 +16,23 @@ class HomeController
 
     public function test()
     {
+        $categorieModel = new CategorieModel();
+        $categories = $categorieModel->selectCategorie();
+
+        $tagModel = new TagModel();
+        $tags = $tagModel->selectTag();
         $wikiModel = new WikiModel();
         $wikis = $wikiModel->selectWikiByStatue(1);
+        $titre = isset($_GET['q']) ? $_GET['q'] : '';
+        $wikisearch=$wikiModel->searchWiki($titre);
        
         try {
             $view = 'home'; 
             $params = [
-                'wikis' => $wikis,  
+                'categories' => $categories,
+                'tags' => $tags,
+                'wikis' => $wikis, 
+                 'wikisearch' => $wikisearch,
             ];
 
             $this->render($view, $params);

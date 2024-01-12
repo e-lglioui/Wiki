@@ -25,7 +25,6 @@ trait Router
     
     private static function cleanUrl($url)
     {
-        // Exemple de nettoyage simple : supprimer les caractères non autorisés
         return preg_replace('/[^a-zA-Z0-9\/]/', '', $url);
     }
 

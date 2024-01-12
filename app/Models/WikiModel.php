@@ -68,22 +68,45 @@ class WikiModel
 
   
 
-public function selectWikiByStatue($statue)
-{
+    public function selectWikiByStatue($statue)
+    {
+        $sql = "SELECT wiki.id_wiki, wiki.titre, wiki.contenu, wiki.datecreation, wiki.img_data, wiki.id_categorie, wiki.id_users, wiki.statue, categorie.nom AS categorie, users.nom AS user_name, GROUP_CONCAT(tag.titre) AS tags
+                FROM wiki
+                LEFT JOIN categorie ON wiki.id_categorie = categorie.id
+                LEFT JOIN users ON wiki.id_users = users.id_user
+                LEFT JOIN tagwiki ON wiki.id_wiki = tagwiki.id_wiki
+                LEFT JOIN tag ON tagwiki.id_tag = tag.id
+                WHERE wiki.statue = $statue
+                GROUP BY wiki.id_wiki
+                ORDER BY wiki.id_wiki DESC"; 
+    
+        $conn = $this->conn->getConnection();
+        $stmt = $conn->query($sql);
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+
+// Select wiki by user id
+public function selectWikiByuser($id_users) {
     $sql = "SELECT wiki.id_wiki, wiki.titre, wiki.contenu, wiki.datecreation, wiki.img_data, wiki.id_categorie, wiki.id_users, wiki.statue, categorie.nom AS categorie, users.nom AS user_name, GROUP_CONCAT(tag.titre) AS tags
-            FROM wiki
-            LEFT JOIN categorie ON wiki.id_categorie = categorie.id
-            LEFT JOIN users ON wiki.id_users = users.id_user
-            LEFT JOIN tagwiki ON wiki.id_wiki = tagwiki.id_wiki
-            LEFT JOIN tag ON tagwiki.id_tag = tag.id
-            WHERE wiki.statue = $statue
-            GROUP BY wiki.id_wiki";
+    FROM wiki
+    LEFT JOIN categorie ON wiki.id_categorie = categorie.id
+    LEFT JOIN users ON wiki.id_users = users.id_user
+    LEFT JOIN tagwiki ON wiki.id_wiki = tagwiki.id_wiki
+    LEFT JOIN tag ON tagwiki.id_tag = tag.id
+    WHERE wiki.id_users = :id_users
+    GROUP BY wiki.id_wiki
+    ORDER BY wiki.id_wiki DESC"; 
 
     $conn = $this->conn->getConnection();
-    $stmt = $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id_users', $id_users, PDO::PARAM_INT);
+    $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 //update statue wiki
 public function updateWikiStatue($wikiId, $statue)
@@ -100,8 +123,23 @@ public function updateWikiStatue($wikiId, $statue)
         echo "Error: " . $e->getMessage();
     }
 }
+// search wiki by titre
+public function searchWiki($titre){
+    $sql = "SELECT * FROM `wiki` WHERE `titre`=:titre AND `statue`=1";
+    $conn = $this->conn->getConnection();
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':titre', $titre, PDO::PARAM_STR);
+    $stmt->execute();
 
-
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-  
+  //delet wiki
+  public function deltWiki($wikiId){
+    $sql ="DELETE FROM `wiki` WHERE `id_wiki`=$wikiId";
+    $conn = $this->conn->getConnection();
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+  }
+}
+
 

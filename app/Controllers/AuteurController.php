@@ -16,13 +16,15 @@ class AuteurController
 
     public function auteur()
     {
-        session_start(); 
+       
 
         $categorieModel = new CategorieModel();
         $categories = $categorieModel->selectCategorie();
 
         $tagModel = new TagModel();
         $tags = $tagModel->selectTag();
+        $wikiModel = new WikiModel();
+        $wikis = $wikiModel->selectWikiByuser($_SESSION['userId']);
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['ajouterwiki'])) {
@@ -35,6 +37,7 @@ class AuteurController
             $params = [
                 'categories' => $categories,
                 'tags' => $tags,
+                'wikis' => $wikis,
             ];
 
             $this->render($view, $params);

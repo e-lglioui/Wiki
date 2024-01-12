@@ -9,7 +9,7 @@ use App\Controllers\AdminController;
 use App\Controllers\AuteurController;
 use Core\View;
 use Exception;
-session_start();
+
 class UserController
 {
     use View;
