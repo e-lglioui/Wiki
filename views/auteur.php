@@ -86,7 +86,7 @@ foreach ($wikis as $wiki) {
                 </div>
             </div>
 
-            <!-- Wiki Modal -->
+           
             <div class="modal fade" id="wikiModal<?= $wiki['id_wiki'] ?>" tabindex="-1" role="dialog"
                 aria-labelledby="wikiModalLabel<?= $wiki['id_wiki'] ?>" aria-hidden="true">
                 <div class="modal-dialog modal-lg">

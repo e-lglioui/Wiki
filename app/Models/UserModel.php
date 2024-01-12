@@ -27,12 +27,12 @@ class UserModel
             $stmt->bindValue(3, $user->getPassword(), PDO::PARAM_STR);
             $stmt->bindValue(4, $user->getIdRole(), PDO::PARAM_INT);
             $stmt->execute();
+            if($sql){
+                return $sql;
+            }
         } catch (PDOException $e) {
             throw new \Exception("Error creating user: " . $e->getMessage());
-        } finally {
-            $stmt->closeCursor();
-            $conn = null;
-        }
+        } 
     }
     
 

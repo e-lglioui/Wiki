@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <!-- searched wiki-->
+    
     <div id="livesearch">
     <section class="container">
         <div class="row">
@@ -39,7 +39,7 @@ foreach ($wikisearch as $wiki) {
                 </div>
             </div>
 
-            <!-- Wiki Modal -->
+           
             <div class="modal fade" id="wikiModal<?= $wiki['id_wiki'] ?>" tabindex="-1" role="dialog"
                 aria-labelledby="wikiModalLabel<?= $wiki['id_wiki'] ?>" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -68,12 +68,12 @@ foreach ($wikisearch as $wiki) {
     </section>
 
     </div>
-    <!-- Hero Section -->
+
     <section class="hero-section">
         <h1 ckass="welkom">Welcome to Our Wiki!</h1>
     </section>
 
-    <!-- Wiki Cards Section -->
+    
     <section class="container">
         <div class="row">
             <?php
@@ -92,7 +92,7 @@ foreach ($wikis as $wiki) {
                 </div>
             </div>
 
-            <!-- Wiki Modal -->
+           
             <div class="modal fade" id="wikiModal<?= $wiki['id_wiki'] ?>" tabindex="-1" role="dialog"
                 aria-labelledby="wikiModalLabel<?= $wiki['id_wiki'] ?>" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -119,7 +119,6 @@ foreach ($wikis as $wiki) {
 
         </div>
     </section>
-                <!-- Section for displaying categories -->
                 <section class="container">
                 <h3>Categories</h3>
                 <div class="row">
@@ -137,7 +136,7 @@ foreach ($wikis as $wiki) {
                 </div>
             </div>
             <section>
-            <section class="container"><!-- Section for displaying tags -->
+            <section class="container">
             <div>
                 <h3>Tags</h3>
                 <ul>
