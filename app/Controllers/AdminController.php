@@ -32,6 +32,8 @@ class AdminController
                     $this-> addCategorie();
                 }else if(isset($_POST['submitTag'])){
                     $this-> addTag();
+                }else if(isset($_POST['Disarchiver'])){
+                    $this->disarchiverWiki();
                 }
             }
 
@@ -72,6 +74,19 @@ class AdminController
         }
     }
     
+    public function disarchiverWiki()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Disarchiver'])) {
+           $wikiId = $_POST['Disarchiver'];
+    
+            try {
+                $wikiModel = new WikiModel();
+                $wikiModel->updateWikiStatue($wikiId, 1); 
+            } catch (\Exception $e) {
+                echo "Error: " . $e->getMessage();
+            }
+        }
+    }
     
 
 

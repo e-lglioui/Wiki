@@ -102,10 +102,29 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Wiki Modal -->
-            <div class="modal fade" id="wikiModal<?= $wiki['id_wiki'] ?>" tabindex="-1" role="dialog" aria-labelledby="wikiModalLabel<?= $wiki['id_wiki'] ?>" aria-hidden="true">
-                <!-- Modal content goes here -->
+            <div class="modal fade" id="wikiModal<?= $wiki['id_wiki'] ?>" tabindex="-1" role="dialog"
+                aria-labelledby="wikiModalLabel<?= $wiki['id_wiki'] ?>" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="wikiModalLabel<?= $wiki['id_wiki'] ?>"><?= $wiki['titre'] ?>
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="data:image/jpeg;base64,<?= base64_encode($wiki['img_data']) ?>" class="img-fluid"
+                                alt="<?= $wiki['titre'] ?>">
+                            <h1><?= $wiki['titre'] ?></h1>
+                            <p><?= $wiki['contenu'] ?></p>
+                            <p>Categorie: <?= $wiki['categorie'] ?></p>
+                            <p>Tags: <?= $wiki['tags'] ?></p>
+                            <p>Date of Creation: <?= $wiki['datecreation'] ?></p>
+                            <p>Created by: <?= $wiki['user_name'] ?></p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Disarchiver Modal -->
@@ -117,12 +136,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <Form method="post">
                             <p>Vous voulez archever cette wiki?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <a href="unarchive-wiki.php?id=<?= $wiki['id_wiki'] ?>" class="btn btn-warning">Unarchive</a>
+        
+                            <button name="Disarchiver" class="btn btn-warning">Disarchiver</a>
                         </div>
+                             </form>
                     </div>
                 </div>
             </div>
