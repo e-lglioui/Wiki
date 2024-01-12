@@ -6,16 +6,18 @@ use Core\View;
 use App\Models\CategorieModel;
 use  App\Models\TagModel;
 use  App\Models\WikiModel;
+use  App\Models\UserModel;
 use  App\entities\Categorie;
 use  App\entities\Tag;
 use  App\entities\Wiki;
 
 class AdminController
 {
-  
     use View; 
     private TagModel $Tag;
     private CategorieModel $Categorie;
+    private UserModel $userModel;
+    
     public function admin()
     {
        
@@ -23,9 +25,12 @@ class AdminController
 
             $categorieModel = new CategorieModel();
             $categories = $categorieModel->selectCategorie();
-
+            $catsta=$categorieModel->countCategorie(); 
+        
             $tagModel = new TagModel();
             $tags = $tagModel->selectTag();
+            $tagsta=$tagModel->countTag(); 
+
             $wikiModel = new WikiModel();
             $wikis = $wikiModel->selectWikiByStatue(0);
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,6 +48,9 @@ class AdminController
                 'categories' => $categories,
                 'tags' => $tags,
                 'wikis' => $wikis,
+                'catsta' =>$catsta,
+                'tagsta' =>$tagsta,
+
             ];
 
             $this->render($view, $params);

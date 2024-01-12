@@ -140,6 +140,29 @@ public function searchWiki($titre){
     $stmt = $conn->prepare($sql);
     $stmt->execute();
   }
-}
+  //statistiques
+  public function countWiki()
+  {
+      $sql = "SELECT COUNT(*) as wiki_count FROM wiki";
+      $conn = $this->conn->getConnection();
 
+      try {
+          $stmt = $conn->query($sql);
+          $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          if ($result) {
+              return $result['wiki_count'];
+          } else {
+              return 0;
+          }
+      } catch (PDOException $e) {
+          throw new \Exception("Error counting wikis: " . $e->getMessage());
+      } finally {
+          $stmt->closeCursor();
+          $conn = null;
+      }
+  }
+
+}
+ 
 

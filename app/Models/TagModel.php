@@ -52,5 +52,27 @@ public function updCategorie(){
         echo "Error: " . $e->getMessage();
     }
     }
+    //statistique
+    public function countTag()
+    {
+        $sql = "SELECT COUNT(*) as tag_count FROM `tag`";
+        $conn = $this->conn->getConnection();
 
+        try {
+            $stmt = $conn->query($sql);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result) {
+                return $result['tag_count'];
+            } else {
+                return 0;
+            }
+        } catch (PDOException $e) {
+            throw new \Exception("Error counting tags: " . $e->getMessage());
+        } finally {
+            $stmt->closeCursor();
+            $conn = null;
+        }
+    }
 }
+

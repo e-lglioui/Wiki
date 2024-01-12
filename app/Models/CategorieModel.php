@@ -82,4 +82,27 @@ class CategorieModel
             echo "Error: " . $e->getMessage();
         }
     }
+    //statistique
+    public function countCategorie()
+    {
+        $sql = "SELECT COUNT(*) as categorie_count FROM `categorie`";
+        $conn = $this->conn->getConnection();
+
+        try {
+            $stmt = $conn->query($sql);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($result) {
+                return $result['categorie_count'];
+            } else {
+                return 0;
+            }
+        } catch (PDOException $e) {
+            throw new \Exception("Error counting categories: " . $e->getMessage());
+        } finally {
+            $stmt->closeCursor();
+            $conn = null;
+        }
+    }
 }
+

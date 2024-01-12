@@ -59,4 +59,49 @@ class UserModel
             $conn = null;
         }
     }
+    //statistiques
+    public function countUser()
+    {
+        $sql = "SELECT COUNT(*) as user_count FROM users WHERE id_role = 1";
+        $conn = $this->conn->getConnection();
+    
+        try {
+            $stmt = $conn->query($sql);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($result) {
+                return $result['user_count'];
+            } else {
+                return 0;
+            }
+        } catch (PDOException $e) {
+            throw new \Exception("Error counting users: " . $e->getMessage());
+        } finally {
+            $stmt->closeCursor();
+            $conn = null;
+        }
+    }
+    
+    public function countAdmin()
+    {
+        $sql = "SELECT COUNT(*) as admin_count FROM users WHERE id_role = 2";
+        $conn = $this->conn->getConnection();
+    
+        try {
+            $stmt = $conn->query($sql);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($result) {
+                return $result['admin_count'];
+            } else {
+                return 0;
+            }
+        } catch (PDOException $e) {
+            throw new \Exception("Error counting admins: " . $e->getMessage());
+        } finally {
+            $stmt->closeCursor();
+            $conn = null;
+        }
+    }
+    
 }

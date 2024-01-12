@@ -49,6 +49,7 @@
             <ul class="nav flex-column">
                 <li class="nav-item" data-bs-toggle="modal" data-bs-target="#categorieModal">Ajouter Categorie</li>
                 <li class="nav-item" data-bs-toggle="modal" data-bs-target="#tagModal">Ajouter Tag</li>
+                <li class="nav-item" ><a href="#statistiques"> Statistique</a></li>
             </ul>
         </aside>
 
@@ -204,6 +205,50 @@
             </div>
         </div>
     </div>
+
+    <section class="container" id="statistiques">
+    <h2>Statistiques</h2>
+
+    <!-- Statistics for Categories -->
+    <div class="mb-4">
+        <h3>Statistiques des Catégories</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?= $catsta ?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Statistics for Tags -->
+    <div class="mb-4">
+        <h3>Statistiques des Tags</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><?=  $tagsta?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Statistics for Users -->
+    <div class="mb-4">
+       
+    </div>
+</section>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl
 </body>
