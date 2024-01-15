@@ -174,11 +174,13 @@ public function updateWiki($wikiId, $updatedTitre)
 {
     $sql = "UPDATE `wiki` SET `titre` = :updatedTitre WHERE `id_wiki` = :wikiId";
     $conn = $this->conn->getConnection();
-
+  
     try {
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':wikiId', $wikiId, PDO::PARAM_INT);
         $stmt->bindParam(':updatedTitre', $updatedTitre);
+        //var_dump($stmt);
+        //die();
         $stmt->execute();
     } catch (PDOException $e) {
         echo "Error updating wiki: " . $e->getMessage();
