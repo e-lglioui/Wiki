@@ -52,6 +52,30 @@ public function updCategorie(){
         echo "Error: " . $e->getMessage();
     }
     }
+
+
+
+//delet tag
+public function deleteCategorie($categoryId)
+{
+    $sql = "DELETE FROM `categorie` WHERE `id` = :categoryId";
+    $conn = $this->conn->getConnection();
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':categoryId', $categoryId, PDO::PARAM_INT);
+        $stmt->execute();
+        echo "deleted";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    } finally {
+        $stmt->closeCursor();
+        $conn = null;
+    }
+}
+
+
+
     //statistique
     public function countTag()
     {

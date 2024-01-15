@@ -40,6 +40,10 @@ class AdminController
                     $this-> addTag();
                 }else if(isset($_POST['Disarchiver'])){
                     $this->disarchiverWiki();
+                }else if(isset($_POST['supteTag'])){
+                    $this-> deleteTag();
+                } else if (isset($_POST['deleteCategorie'])) {
+                    $this->deleteCategorie();
                 }
             }
 
@@ -96,8 +100,42 @@ class AdminController
             }
         }
     }
-    
+  //delet tag
+  public function deleteTag()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['supteTag'])) {
+            $tagId = $_POST['tagId'];
 
+            try {
+                $tagModel = new TagModel();
+                $tagModel->deleteTag($tagId);
+                //echo"delted";
+                //die();
+                header("Location: /admin/"); 
+                exit();
+            } catch (\Exception $e) {
+                echo "Error: " . $e->getMessage();
+            }
+        }
+    }
+
+  
+    public function deleteCategorie()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteCategorie'])) {
+            $categoryId = $_POST['categoryId'];
+      
+            try {
+                $categorieModel = new CategorieModel();
+                $categorieModel->deleteCategorie($categoryId);
+                header("Location: /admin/");
+                echo"delted";
+                die();
+                exit();
+            } catch (\Exception $e) {
+                echo "Error: " . $e->getMessage();
+            }
+        }
 
     function validation($data) {
         $data = trim($data);
@@ -106,4 +144,5 @@ class AdminController
         return $data;
       }
 
+}
 }

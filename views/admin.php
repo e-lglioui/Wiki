@@ -57,33 +57,46 @@
         <main class="col-md-9 content">
             <!--searche-->
             <div id="livesearch"></div>
-            <!-- Section for displaying categories -->
-            <div>
-                <h3>Categories</h3>
-                <div class="row">
-                    <?php foreach ($categories as $category) : ?>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $category['nom'] ?></h5>
-                                    <p class="card-text"><?= $category['discription'] ?></p>
-                                    <p class="card-text"><small class="text-muted">Created on <?= $category['dat'] ?></small></p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+           <!-- Section for displaying categories -->
+    <div>
+    <h3>Categories</h3>
+    <div class="row">
+        <?php foreach ($categories as $category) : ?>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $category['nom'] ?></h5>
+                        <p class="card-text"><?= $category['discription'] ?></p>
+                        <p class="card-text"><small class="text-muted">Created on <?= $category['dat'] ?></small></p>
+                        
+                    
+                        <form method="post" >
+                            <input type="hidden" name="categoryId" value="<?= $category['id'] ?>">
+                            <button type="submit" name="deleteCategorie" class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </div>
                 </div>
             </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
 
             <!-- Section for displaying tags -->
             <div>
-                <h3>Tags</h3>
-                <ul>
-                    <?php foreach ($tags as $tag) : ?>
-                        <li><?= $tag['titre'] ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+    <h3>Tags</h3>
+    <ul>
+        <?php foreach ($tags as $tag) : ?>
+            <li>
+                <?= $tag['titre'] ?>
+                <form method="post" action="">
+                    <input type="hidden" name="tagId" value="<?= $tag['id'] ?>">
+                    <button type="submit" name="supteTag" class="btn btn-danger btn-sm">Supprimer</button>
+                </form>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
 
             
             <!-- Section for displaying wikis -->

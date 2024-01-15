@@ -49,28 +49,28 @@
                         <form id="signupForm" method="post">
                             <div class="form-group">
                                 <label for="name">Nom:</label>
-                                <input type="text" class="form-control" id="name" name="nom" required>
+                                <input type="text" class="form-control" id="name" name="nom" placeholder="Nom" required>
                                 <span id="nomError" class="error-message"></span>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                                 <span id="emailError" class="error-message"></span>
-                            </div>
+          d                  </div>
                             <div class="form-group">
                                 <label for="password">Mot de passe:</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                                 <span id="passwordError" class="error-message"></span>
                             </div>
                             <div class="form-group">
                                 <label for="confirmPassword">Confirmer le mot de passe:</label>
-                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"  placeholder="confirmPassword"required>
                                 <span id="confirmPasswordError" class="error-message"></span>
                             </div>
                             <button type="submit" class="btn btn-secondary btn-block" name="submit" onclick="validateForm(event)">S'inscrire</button>
                         </form>
                         <div class="mt-3 text-center">
-                            <p class="text-muted">Déjà un compte ? <a href="">Connectez-vous ici</a></p>
+                            <p class="text-muted">Déjà un compte ? <a href="/login/">Connectez-vous ici</a></p>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
 
     <script>
         function validateForm(e) {
-            e.preventDefault();
+           
 
             var nom = document.forms["signupForm"]["nom"].value;
             var email = document.forms["signupForm"]["email"].value;

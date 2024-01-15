@@ -21,7 +21,7 @@
 <body>
     
     <div id="livesearch">
-    <section class="container">
+   <section class="container">
         <div class="row">
             <?php
 foreach ($wikisearch as $wiki) {
@@ -74,7 +74,7 @@ foreach ($wikisearch as $wiki) {
     </section>
 
     
-    <section class="container">
+    <section class="container" id="wiki">
         <div class="row">
             <?php
 foreach ($wikis as $wiki) {
@@ -119,7 +119,7 @@ foreach ($wikis as $wiki) {
 
         </div>
     </section>
-                <section class="container">
+                <section class="container" id="categories">
                 <h3>Categories</h3>
                 <div class="row">
                     <?php foreach ($categories as $category) : ?>
@@ -136,7 +136,7 @@ foreach ($wikis as $wiki) {
                 </div>
             </div>
             <section>
-            <section class="container">
+            <section class="container" id="tags">
             <div>
                 <h3>Tags</h3>
                 <ul>

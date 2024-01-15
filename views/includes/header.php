@@ -12,7 +12,7 @@
   <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
   <div class="container-fluid">
-   <a class="navbar-brand  text-light fw-bold" href="#"> Wiki <sup>TM</sup></a>
+   <a class="navbar-brand  text-light fw-bold" href="/wiki/"> Wiki <sup>TM</sup></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,23 +20,23 @@
       
     <ul class="navbar-nav d-flex mb-2 justify-content-around ">
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+          <a class="nav-link active text-white" aria-current="page" href="/wiki/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Wikies</a>
+          <a class="nav-link text-white" href="#wiki">Wikies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Categories</a>
+          <a class="nav-link text-white" href="#categories">Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Tags</a>
+          <a class="nav-link text-white" href="#tags">Tags</a>
         </li>
       </ul>
  
       <form>
       <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="showResult(this.value)">
        </form>
-      <button type="button" class="btn btn-secondary">Login</button>
+      <button type="button" class="btn btn-secondary"><a href="/login/">Login</a></button>
     </div>
   </div>
 </nav>

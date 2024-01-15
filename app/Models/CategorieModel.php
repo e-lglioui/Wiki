@@ -104,5 +104,33 @@ class CategorieModel
             $conn = null;
         }
     }
+
+
+
+    /*Supprimer categorie*/
+    public function deleteCategorie($categoryId)
+    {
+        $sql = "DELETE FROM `categorie` WHERE `id` = :categoryId";
+        $conn = $this->conn->getConnection();
+    
+        try {
+            //echo"deleted";
+            //die();
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':categoryId', $categoryId, PDO::PARAM_INT);
+            //echo"deleted";
+            //die();
+            $stmt->execute();
+           // echo"deleted";
+            die();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        } finally {
+            $stmt->closeCursor();
+            $conn = null;
+        }
+    }
+    
+
 }
 

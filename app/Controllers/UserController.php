@@ -61,7 +61,7 @@ class UserController
         }
         if($row){
             /*rederect vere login*/
-             /*$this->login();*/
+             $this->login();
         }
     }
 
@@ -75,8 +75,8 @@ class UserController
             $_SESSION['userId'] = $user['id_user'];
             $_SESSION['loggedIn'] = true;
             $_SESSION['role_id'] =$user['id_role'];
-            // var_dump($user['id_role']);
-            // die();
+             var_dump($user['id_role']);
+            die();
             if($user['id_role']=== "2"){
                 $admin=new AdminController();
                 $admin->admin();
@@ -86,7 +86,9 @@ class UserController
             } 
             
         } else {
-       $this->register();
+            echo"nooooooooooooooooooooooooooooooooo";
+            header("Location: /register/");
+            exit();
         }
     }
 

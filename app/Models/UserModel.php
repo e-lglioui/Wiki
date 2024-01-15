@@ -48,7 +48,7 @@ class UserModel
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($user && password_verify($password, $user['password'])) {
-                return $user; // or return true; depending on your needs
+                return $user; 
             } else {
                 return false;
             }
