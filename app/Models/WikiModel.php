@@ -133,13 +133,61 @@ public function searchWiki($titre){
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-  //delet wiki
-  public function deltWiki($wikiId){
-    $sql ="DELETE FROM `wiki` WHERE `id_wiki`=$wikiId";
+
+//suprimmer tagwik
+public function deleteTagwikiRecords($wikiId)
+{
+    $sql = "DELETE FROM `tagwiki` WHERE `id_wiki` = :wikiId";
     $conn = $this->conn->getConnection();
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-  }
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':wikiId', $wikiId, PDO::PARAM_INT);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo "Error deleting tagwiki records: " . $e->getMessage();
+    } finally {
+        $stmt->closeCursor();
+        $conn = null;
+    }
+}
+
+//supprimer wiki
+public function deleteWiki($wikiId)
+{
+    $sql = "DELETE FROM `wiki` WHERE `id_wiki` = :wikiId";
+    $conn = $this->conn->getConnection();
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':wikiId', $wikiId, PDO::PARAM_INT);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    } finally {
+        $stmt->closeCursor();
+        $conn = null;
+    }
+}
+
+public function updateWiki($wikiId, $updatedTitre)
+{
+    $sql = "UPDATE `wiki` SET `titre` = :updatedTitre WHERE `id_wiki` = :wikiId";
+    $conn = $this->conn->getConnection();
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':wikiId', $wikiId, PDO::PARAM_INT);
+        $stmt->bindParam(':updatedTitre', $updatedTitre);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo "Error updating wiki: " . $e->getMessage();
+    } finally {
+        $stmt->closeCursor();
+        $conn = null;
+    }
+}
+
   //statistiques
   public function countWiki()
   {

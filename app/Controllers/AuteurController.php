@@ -29,8 +29,14 @@ class AuteurController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['ajouterwiki'])) {
                 $this->ajouterWiki();
-            }
+            } else if (isset($_POST['deleteWiki'])) {
+                $wikiId = $_POST['wikiId'];
+                $this->deleteWiki($wikiId);
         }
+        else if (isset($_POST['updateWiki'])) {
+            $wikiId = $_POST['wikiId']; 
+            $this->updateWiki($wikiId);
+        }}
 
         try {
             $view = 'auteur'; 
@@ -70,6 +76,24 @@ class AuteurController
         }
     }
     
+    public function deleteWiki($wikiId)
+    {
+        $wikiModel = new WikiModel();
+        $wikiModel->deleteTagwikiRecords($wikiId); 
+        $wikiModel->deleteWiki($wikiId);
+    }
+    
+    public function updateWiki($wikiId)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $updatedTitre = $this->validation($_POST['updateTitre']);
+            $wikiModel = new WikiModel();
+            $wikiModel->updateWiki($wikiId, $updatedTitre);
+        }
+    }
+
+
+
 
     function validation($data) {
         $data = trim($data);
