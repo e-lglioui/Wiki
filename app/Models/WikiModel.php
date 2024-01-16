@@ -108,7 +108,7 @@ public function selectWikiByuser($id_users) {
 }
 
 
-//update statue wiki
+//update statue wiki archiver
 public function updateWikiStatue($wikiId, $statue)
 {
     $sql = "UPDATE `wiki` SET `statue` = :statue WHERE `id_wiki` = :wikiId";
