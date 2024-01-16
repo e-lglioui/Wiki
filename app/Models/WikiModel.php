@@ -125,6 +125,7 @@ public function updateWikiStatue($wikiId, $statue)
 }
 // search wiki by titre
 public function searchWiki($titre){
+    
     $sql = "SELECT * FROM `wiki` WHERE `titre`=:titre AND `statue`=1";
     $conn = $this->conn->getConnection();
     $stmt = $conn->prepare($sql);

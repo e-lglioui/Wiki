@@ -34,7 +34,7 @@
       </ul>
  
       <form>
-      <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="showResult(this.value)">
+      <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" oninput="search()">
        </form>
        <?php if(isset($_SESSION['loggedIn'])): ?>
    <button type="button" class="btn btn-secondary"><a href="/logout/">Logout</a></button>
@@ -46,22 +46,44 @@
   </div>
 </nav>
 
-<script>
-function showResult(str) {
-  if (str.length == 0) {
-    document.getElementById("livesearch").innerHTML = "";
-    document.getElementById("livesearch").style.border = "0px";
-    return;
-  }
 
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("livesearch").innerHTML = this.responseText;
-      document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
-    }
-  }
-  xmlhttp.open("GET", "/wiki?q=" + encodeURIComponent(str), true);
-  xmlhttp.send();
-}
+<script>
+// function showResult(str) {
+//   if (str.length == 0) {
+//     document.getElementById("livesearch").innerHTML = "";
+//     document.getElementById("livesearch").style.border = "0px";
+//     return;
+//   }
+
+//   var xmlhttp = new XMLHttpRequest();
+//   var url = `/search?q=${str}`;
+//   xmlhttp.open("GET", url, true);
+
+//   xmlhttp.onreadystatechange = function () {
+//     if (xmlhttp.readyState === 4) {
+//       if (xmlhttp.status === 200) {
+//         var wikis = JSON.parse(xmlhttp.responseText);
+
+//         var livesearchContainer = document.getElementById("livesearch");
+
+//         livesearchContainer.innerHTML = "";
+
+//         for (var i = 0; i < wikis.length; i++) {
+//           var wikiItem = document.createElement("div");
+//           wikiItem.textContent = wikis[i].titre; // Adjust this based on your data structure
+//           livesearchContainer.appendChild(wikiItem);
+//         }
+
+//         document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
+//       } else {
+//         console.error("Error: " + xmlhttp.statusText);
+//       }
+//     }
+//   };
+
+//   xmlhttp.send();
+// }
+
+
 </script>
+

@@ -21,4 +21,11 @@ $app::post('/auteur\/', 'AuteurController', 'auteur');
 $app::get('/logout\/', 'UserController', 'logout');
 $app::post('/logout\/', 'UserController', 'logout');
 
+
+$app::get('/search\/', 'HomeController', 'search');
+
+
+
+
+
 $app->run();

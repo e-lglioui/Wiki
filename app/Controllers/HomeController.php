@@ -23,16 +23,14 @@ class HomeController
         $tags = $tagModel->selectTag();
         $wikiModel = new WikiModel();
         $wikis = $wikiModel->selectWikiByStatue(1);
-        $titre = isset($_GET['q']) ? $_GET['q'] : '';
-        $wikisearch=$wikiModel->searchWiki($titre);
+       
        
         try {
             $view = 'home'; 
             $params = [
                 'categories' => $categories,
                 'tags' => $tags,
-                'wikis' => $wikis, 
-                 'wikisearch' => $wikisearch,
+                'wikis' => $wikis
             ];
 
             $this->render($view, $params);
@@ -40,6 +38,17 @@ class HomeController
             echo "Error: " . $e->getMessage();
         }
     }
+
+
+    public function search()
+    {
+        if(isset($_GET['q'])){
+            $titre = $_GET['q'];
+            $wikisearch=$wikiModel->searchWiki($titre);
+            echo json_encode($wikisearch);
+        }
+    }
+
     
 
 }
