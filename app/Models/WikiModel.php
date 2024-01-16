@@ -72,12 +72,12 @@ class WikiModel
     {
         $sql = "SELECT wiki.id_wiki, wiki.titre, wiki.contenu, wiki.datecreation, wiki.img_data, wiki.id_categorie, wiki.id_users, wiki.statue, categorie.nom AS categorie, users.nom AS user_name, GROUP_CONCAT(tag.titre) AS tags
                 FROM wiki
-                LEFT JOIN categorie ON wiki.id_categorie = categorie.id
+                  LEFT JOIN categorie ON wiki.id_categorie = categorie.id
                 LEFT JOIN users ON wiki.id_users = users.id_user
                 LEFT JOIN tagwiki ON wiki.id_wiki = tagwiki.id_wiki
-                LEFT JOIN tag ON tagwiki.id_tag = tag.id
+                   LEFT JOIN tag ON tagwiki.id_tag = tag.id
                 WHERE wiki.statue = $statue
-                GROUP BY wiki.id_wiki
+                       GROUP BY wiki.id_wiki
                 ORDER BY wiki.id_wiki DESC"; 
     
         $conn = $this->conn->getConnection();
@@ -91,9 +91,9 @@ class WikiModel
 public function selectWikiByuser($id_users) {
     $sql = "SELECT wiki.id_wiki, wiki.titre, wiki.contenu, wiki.datecreation, wiki.img_data, wiki.id_categorie, wiki.id_users, wiki.statue, categorie.nom AS categorie, users.nom AS user_name, GROUP_CONCAT(tag.titre) AS tags
     FROM wiki
-    LEFT JOIN categorie ON wiki.id_categorie = categorie.id
+     LEFT JOIN categorie ON wiki.id_categorie = categorie.id
     LEFT JOIN users ON wiki.id_users = users.id_user
-    LEFT JOIN tagwiki ON wiki.id_wiki = tagwiki.id_wiki
+      LEFT JOIN tagwiki ON wiki.id_wiki = tagwiki.id_wiki
     LEFT JOIN tag ON tagwiki.id_tag = tag.id
     WHERE wiki.id_users = :id_users
     GROUP BY wiki.id_wiki
