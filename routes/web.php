@@ -18,4 +18,7 @@ $app::post('/admin\/', 'AdminController', 'admin');
 $app::get('/auteur\/', 'AuteurController', 'auteur');
 $app::post('/auteur\/', 'AuteurController', 'auteur');
 
+$app::get('/logout\/', 'UserController', 'logout');
+$app::post('/logout\/', 'UserController', 'logout');
+
 $app->run();

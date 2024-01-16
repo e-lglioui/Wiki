@@ -36,7 +36,12 @@
       <form>
       <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="showResult(this.value)">
        </form>
-      <button type="button" class="btn btn-secondary"><a href="/login/">Login</a></button>
+       <?php if(isset($_SESSION['loggedIn'])): ?>
+   <button type="button" class="btn btn-secondary"><a href="/logout/">Logout</a></button>
+<?php else: ?>
+   <button type="button" class="btn btn-secondary"><a href="/login/">Login</a></button>
+<?php endif; ?>
+
     </div>
   </div>
 </nav>
