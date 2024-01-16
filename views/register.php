@@ -56,7 +56,7 @@
                                 <label for="email">Email:</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
                                 <span id="emailError" class="error-message"></span>
-          d                  </div>
+                        </div>
                             <div class="form-group">
                                 <label for="password">Mot de passe:</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>

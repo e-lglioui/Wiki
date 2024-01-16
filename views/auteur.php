@@ -127,7 +127,7 @@
             <div class="modal-body">
                 <!-- Update Wiki Form -->
                 <form action="" method="post" name="updateWikiform" enctype="multipart/form-data">
-                    <!-- Include input fields with the existing wiki data -->
+                    
                     <input type="hidden" name="wikiId" value="<?= $wiki['id_wiki'] ?>">
 
                     <div class="form-group">

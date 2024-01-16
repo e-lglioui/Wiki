@@ -1,7 +1,7 @@
 <?php include "includes/header.php"; ?>
 <style>    
   .hero-section {
-    background: url('../assets/img/wikiHero.jpg') center no-repeat;
+    background: url('../assets/img/wikiHeroo.jpg') center no-repeat;
     height: 400px;
     width: 99vw;
     display: flex;
